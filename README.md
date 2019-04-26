@@ -1,16 +1,7 @@
-<h1 align="center">Easy SMS</h1>
+<h1 align="center">xiaoyun/easy-sms</h1>
 
 <p align="center">:calling: 一款满足你的多种发送需求的短信发送组件</p>
 
-<p align="center">
-<a href="https://travis-ci.org/xiaoyun/easy-sms"><img src="https://travis-ci.org/xiaoyun/easy-sms.svg?branch=master" alt="Build Status"></a>
-<a href="https://packagist.org/packages/xiaoyun/easy-sms"><img src="https://poser.pugx.org/xiaoyun/easy-sms/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/xiaoyun/easy-sms"><img src="https://poser.pugx.org/xiaoyun/easy-sms/v/unstable.svg" alt="Latest Unstable Version"></a>
-<a href="https://scrutinizer-ci.com/g/xiaoyun/easy-sms/?branch=master"><img src="https://scrutinizer-ci.com/g/xiaoyun/easy-sms/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
-<a href="https://scrutinizer-ci.com/g/xiaoyun/easy-sms/?branch=master"><img src="https://scrutinizer-ci.com/g/xiaoyun/easy-sms/badges/coverage.png?b=master" alt="Code Coverage"></a>
-<a href="https://packagist.org/packages/xiaoyun/easy-sms"><img src="https://poser.pugx.org/xiaoyun/easy-sms/downloads" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/xiaoyun/easy-sms"><img src="https://poser.pugx.org/xiaoyun/easy-sms/license" alt="License"></a>
-</p>
 
 
 ## 特点
@@ -563,12 +554,6 @@ $easySms->send(13188888888, [
     ],
 ]);
 ```
-
-## PHP 扩展包开发
-
-> 想知道如何从零开始构建 PHP 扩展包？
->
-> 请关注我的实战课程，我会在此课程中分享一些扩展开发经验 —— [《PHP 扩展包实战教程 - 从入门到发布》](https://learnku.com/courses/creating-package)
 
 ## License
 

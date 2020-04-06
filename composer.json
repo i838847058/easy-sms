@@ -1,5 +1,5 @@
 {
-    "name": "xiaoyun/easy-sms",
+    "name": "shuxian/easy-sms",
     "description": "The easiest way to send short message.",
     "type": "library",
     "require": {
@@ -12,12 +12,12 @@
     },
     "autoload": {
         "psr-4": {
-            "XiaoYun\\EasySms\\": "src"
+            "shuxian\\EasySms\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "XiaoYun\\EasySms\\Tests\\": "tests"
+            "shuxian\\EasySms\\Tests\\": "tests"
         }
     },
     "license": "MIT",

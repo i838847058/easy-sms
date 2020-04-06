@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Tests\Traits;
+namespace shuxian\EasySms\Tests\Traits;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
-use XiaoYun\EasySms\Tests\TestCase;
-use XiaoYun\EasySms\Traits\HasHttpRequest;
+use shuxian\EasySms\Tests\TestCase;
+use shuxian\EasySms\Traits\HasHttpRequest;
 use Psr\Http\Message\ResponseInterface;
 
 class HasHttpRequestTest extends TestCase

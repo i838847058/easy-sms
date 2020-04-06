@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms;
+namespace shuxian\EasySms;
 
-use XiaoYun\EasySms\Contracts\MessageInterface;
-use XiaoYun\EasySms\Contracts\PhoneNumberInterface;
-use XiaoYun\EasySms\Exceptions\NoGatewayAvailableException;
+use shuxian\EasySms\Contracts\MessageInterface;
+use shuxian\EasySms\Contracts\PhoneNumberInterface;
+use shuxian\EasySms\Exceptions\NoGatewayAvailableException;
 
 /**
  * Class Messenger.
@@ -25,14 +25,14 @@ class Messenger
     const STATUS_FAILURE = 'failure';
 
     /**
-     * @var \XiaoYun\EasySms\EasySms
+     * @var \shuxian\EasySms\EasySms
      */
     protected $easySms;
 
     /**
      * Messenger constructor.
      *
-     * @param \XiaoYun\EasySms\EasySms $easySms
+     * @param \shuxian\EasySms\EasySms $easySms
      */
     public function __construct(EasySms $easySms)
     {
@@ -42,13 +42,13 @@ class Messenger
     /**
      * Send a message.
      *
-     * @param \XiaoYun\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \XiaoYun\EasySms\Contracts\MessageInterface     $message
+     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
      * @param array                                            $gateways
      *
      * @return array
      *
-     * @throws \XiaoYun\EasySms\Exceptions\NoGatewayAvailableException
+     * @throws \shuxian\EasySms\Exceptions\NoGatewayAvailableException
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, array $gateways = [])
     {

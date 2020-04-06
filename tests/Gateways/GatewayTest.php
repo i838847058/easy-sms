@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Tests\Gateways;
+namespace shuxian\EasySms\Tests\Gateways;
 
-use XiaoYun\EasySms\Contracts\MessageInterface;
-use XiaoYun\EasySms\Contracts\PhoneNumberInterface;
-use XiaoYun\EasySms\Gateways\Gateway;
-use XiaoYun\EasySms\Support\Config;
-use XiaoYun\EasySms\Tests\TestCase;
+use shuxian\EasySms\Contracts\MessageInterface;
+use shuxian\EasySms\Contracts\PhoneNumberInterface;
+use shuxian\EasySms\Gateways\Gateway;
+use shuxian\EasySms\Support\Config;
+use shuxian\EasySms\Tests\TestCase;
 
 class GatewayTest extends TestCase
 {
@@ -38,7 +38,7 @@ class GatewayTest extends TestCase
 
         $this->assertInstanceOf(Config::class, $gateway->getConfig());
 
-        $config = new Config(['name' => 'xiaoyun']);
+        $config = new Config(['name' => 'shuxian']);
         $this->assertSame($config, $gateway->setConfig($config)->getConfig());
     }
 }

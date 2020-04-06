@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Tests\Support;
+namespace shuxian\EasySms\Tests\Support;
 
-use XiaoYun\EasySms\Support\Config;
-use XiaoYun\EasySms\Tests\TestCase;
+use shuxian\EasySms\Support\Config;
+use shuxian\EasySms\Tests\TestCase;
 
 class ConfigTest extends TestCase
 {
@@ -24,7 +24,7 @@ class ConfigTest extends TestCase
                 'screen_name' => 'somebody',
                 'profile' => [
                     'id' => 9999,
-                    'name' => 'xiaoyun',
+                    'name' => 'shuxian',
                 ],
             ],
             'numbers' => [
@@ -46,7 +46,7 @@ class ConfigTest extends TestCase
         $this->assertNull($config->get(null));
 
         $this->assertSame(9999, $config->get('bar.profile.id'));
-        $this->assertSame('xiaoyun', $config->get('bar.profile.name'));
+        $this->assertSame('shuxian', $config->get('bar.profile.name'));
 
         $this->assertSame(1, $config->get('numbers.0.id'));
         $this->assertSame(1, $config->get('numbers.0.number'));

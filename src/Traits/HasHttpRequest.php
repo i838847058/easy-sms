@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Traits;
+namespace shuxian\EasySms\Traits;
 
 use GuzzleHttp\Client;
 use Psr\Http\Message\ResponseInterface;

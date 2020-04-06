@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Gateways;
+namespace shuxian\EasySms\Gateways;
 
-use XiaoYun\EasySms\Contracts\MessageInterface;
-use XiaoYun\EasySms\Contracts\PhoneNumberInterface;
-use XiaoYun\EasySms\Exceptions\GatewayErrorException;
-use XiaoYun\EasySms\Support\Config;
-use XiaoYun\EasySms\Traits\HasHttpRequest;
+use shuxian\EasySms\Contracts\MessageInterface;
+use shuxian\EasySms\Contracts\PhoneNumberInterface;
+use shuxian\EasySms\Exceptions\GatewayErrorException;
+use shuxian\EasySms\Support\Config;
+use shuxian\EasySms\Traits\HasHttpRequest;
 
 /**
  * Class YuntongxunGateway.
@@ -41,13 +41,13 @@ class YuntongxunGateway extends Gateway
     const SUCCESS_CODE = '000000';
 
     /**
-     * @param \XiaoYun\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \XiaoYun\EasySms\Contracts\MessageInterface     $message
-     * @param \XiaoYun\EasySms\Support\Config                 $config
+     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
+     * @param \shuxian\EasySms\Support\Config                 $config
      *
      * @return array
      *
-     * @throws \XiaoYun\EasySms\Exceptions\GatewayErrorException ;
+     * @throws \shuxian\EasySms\Exceptions\GatewayErrorException ;
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
@@ -82,7 +82,7 @@ class YuntongxunGateway extends Gateway
      * @param string                           $type
      * @param string                           $resource
      * @param string                           $datetime
-     * @param \XiaoYun\EasySms\Support\Config $config
+     * @param \shuxian\EasySms\Support\Config $config
      *
      * @return string
      */

@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Tests\Gateways;
+namespace shuxian\EasySms\Tests\Gateways;
 
-use XiaoYun\EasySms\Exceptions\GatewayErrorException;
-use XiaoYun\EasySms\Exceptions\InvalidArgumentException;
-use XiaoYun\EasySms\Gateways\ChuanglanGateway;
-use XiaoYun\EasySms\Message;
-use XiaoYun\EasySms\PhoneNumber;
-use XiaoYun\EasySms\Support\Config;
-use XiaoYun\EasySms\Tests\TestCase;
+use shuxian\EasySms\Exceptions\GatewayErrorException;
+use shuxian\EasySms\Exceptions\InvalidArgumentException;
+use shuxian\EasySms\Gateways\ChuanglanGateway;
+use shuxian\EasySms\Message;
+use shuxian\EasySms\PhoneNumber;
+use shuxian\EasySms\Support\Config;
+use shuxian\EasySms\Tests\TestCase;
 
 /**
  * Class ChuanglanGatewayTest.

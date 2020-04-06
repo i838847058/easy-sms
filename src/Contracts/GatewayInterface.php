@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Contracts;
+namespace shuxian\EasySms\Contracts;
 
-use XiaoYun\EasySms\Support\Config;
+use shuxian\EasySms\Support\Config;
 
 /**
  * Class GatewayInterface.
@@ -28,9 +28,9 @@ interface GatewayInterface
     /**
      * Send a short message.
      *
-     * @param \XiaoYun\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \XiaoYun\EasySms\Contracts\MessageInterface     $message
-     * @param \XiaoYun\EasySms\Support\Config                 $config
+     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
+     * @param \shuxian\EasySms\Support\Config                 $config
      *
      * @return array
      */

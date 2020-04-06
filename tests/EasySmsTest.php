@@ -1,25 +1,25 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Tests;
+namespace shuxian\EasySms\Tests;
 
-use XiaoYun\EasySms\Contracts\GatewayInterface;
-use XiaoYun\EasySms\Contracts\MessageInterface;
-use XiaoYun\EasySms\Contracts\PhoneNumberInterface;
-use XiaoYun\EasySms\EasySms;
-use XiaoYun\EasySms\Exceptions\InvalidArgumentException;
-use XiaoYun\EasySms\Message;
-use XiaoYun\EasySms\Messenger;
-use XiaoYun\EasySms\PhoneNumber;
-use XiaoYun\EasySms\Support\Config;
+use shuxian\EasySms\Contracts\GatewayInterface;
+use shuxian\EasySms\Contracts\MessageInterface;
+use shuxian\EasySms\Contracts\PhoneNumberInterface;
+use shuxian\EasySms\EasySms;
+use shuxian\EasySms\Exceptions\InvalidArgumentException;
+use shuxian\EasySms\Message;
+use shuxian\EasySms\Messenger;
+use shuxian\EasySms\PhoneNumber;
+use shuxian\EasySms\Support\Config;
 use RuntimeException;
 
 class EasySmsTest extends TestCase
@@ -32,7 +32,7 @@ class EasySmsTest extends TestCase
 
         // invalid gateway
         $this->expectException(InvalidArgumentException::class);
-        $this->expectExceptionMessage('Class "XiaoYun\EasySms\Gateways\NotExistsGatewayNameGateway" is a invalid easy-sms gateway.');
+        $this->expectExceptionMessage('Class "shuxian\EasySms\Gateways\NotExistsGatewayNameGateway" is a invalid easy-sms gateway.');
 
         $easySms->gateway('NotExistsGatewayName');
     }
@@ -41,7 +41,7 @@ class EasySmsTest extends TestCase
     {
         $easySms = \Mockery::mock(EasySms::class.'[makeGateway]', [['default' => DummyGatewayForTest::class]]);
 
-        $this->expectExceptionMessage('Class "XiaoYun\EasySms\Tests\DummyGatewayNotImplementsGatewayInterface" is a invalid easy-sms gateway.');
+        $this->expectExceptionMessage('Class "shuxian\EasySms\Tests\DummyGatewayNotImplementsGatewayInterface" is a invalid easy-sms gateway.');
         $easySms->makeGateway(DummyGatewayNotImplementsGatewayInterface::class, []);
     }
 
@@ -66,7 +66,7 @@ class EasySmsTest extends TestCase
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage(
             sprintf(
-                'Class "XiaoYun\EasySms\Gateways\%sGateway" is a invalid easy-sms gateway.',
+                'Class "shuxian\EasySms\Gateways\%sGateway" is a invalid easy-sms gateway.',
                 DummyInvalidGatewayForTest::class
             )
         );

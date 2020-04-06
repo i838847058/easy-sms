@@ -1,4 +1,4 @@
-<h1 align="center">xiaoyun/easy-sms</h1>
+<h1 align="center">shuxian/easy-sms</h1>
 
 <p align="center">:calling: 一款满足你的多种发送需求的短信发送组件</p>
 
@@ -40,13 +40,13 @@
 ## 安装
 
 ```shell
-$ composer require "xiaoyun/easy-sms"
+$ composer require "shuxian/easy-sms"
 ```
 
 ## 使用
 
 ```php
-use XiaoYun\EasySms\EasySms;
+use shuxian\EasySms\EasySms;
 
 $config = [
     // HTTP 请求的超时时间（秒）
@@ -55,7 +55,7 @@ $config = [
     // 默认发送配置
     'default' => [
         // 网关调用策略，默认：顺序调用
-        'strategy' => \XiaoYun\EasySms\Strategies\OrderStrategy::class,
+        'strategy' => \shuxian\EasySms\Strategies\OrderStrategy::class,
 
         // 默认可用的发送网关
         'gateways' => [
@@ -179,13 +179,13 @@ $easySms->send(13188888888, [
     'juhe' => [
         'gateway' => 'juhe',
         'status' => 'failure',
-        'exception' => \XiaoYun\EasySms\Exceptions\GatewayErrorException 对象
+        'exception' => \shuxian\EasySms\Exceptions\GatewayErrorException 对象
     ],
     //...
 ]
 ```
 
-如果所选网关列表均发送失败时，将会抛出 `XiaoYun\EasySms\Exceptions\NoGatewayAvailableException` 异常，你可以使用 `$e->results` 获取发送结果。
+如果所选网关列表均发送失败时，将会抛出 `shuxian\EasySms\Exceptions\NoGatewayAvailableException` 异常，你可以使用 `$e->results` 获取发送结果。
 
 你也可以使用 `$e` 提供的更多便捷方法：
 
@@ -235,7 +235,7 @@ $easySms->send(13188888888, [
 国际短信与国内短信的区别是号码前面需要加国际码，但是由于各平台对国际号码的写法不一致，所以在发送国际短信的时候有一点区别：
 
 ```php
-use XiaoYun\EasySms\PhoneNumber;
+use shuxian\EasySms\PhoneNumber;
 
 // 发送到国际码为 31 的国际号码
 $number = new PhoneNumber(13188888888, 31);
@@ -251,14 +251,14 @@ $easySms->send($number, [
 
 ## 定义短信
 
-你可以根据发送场景的不同，定义不同的短信类，从而实现一处定义多处调用，你可以继承 `XiaoYun\EasySms\Message` 来定义短信模型：
+你可以根据发送场景的不同，定义不同的短信类，从而实现一处定义多处调用，你可以继承 `shuxian\EasySms\Message` 来定义短信模型：
 
 ```php
 <?php
 
-use XiaoYun\EasySms\Message;
-use XiaoYun\EasySms\Contracts\GatewayInterface;
-use XiaoYun\EasySms\Strategies\OrderStrategy;
+use shuxian\EasySms\Message;
+use shuxian\EasySms\Contracts\GatewayInterface;
+use shuxian\EasySms\Strategies\OrderStrategy;
 
 class OrderPaidMessage extends Message
 {
@@ -293,7 +293,7 @@ class OrderPaidMessage extends Message
 }
 ```
 
-> 更多自定义方式请参考：[`XiaoYun\EasySms\Message`](XiaoYun\EasySms\Message;)
+> 更多自定义方式请参考：[`shuxian\EasySms\Message`](shuxian\EasySms\Message;)
 
 发送自定义短信：
 
@@ -445,9 +445,9 @@ $easySms->send(13188888888, $message);
         'account' => '',
         'password' => '',
 
-        // \XiaoYun\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE  => 验证码通道（默认）
-        // \XiaoYun\EasySms\Gateways\ChuanglanGateway::CHANNEL_PROMOTION_CODE => 会员营销通道
-        'channel'  => \XiaoYun\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE, 
+        // \shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE  => 验证码通道（默认）
+        // \shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_PROMOTION_CODE => 会员营销通道
+        'channel'  => \shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE, 
 
         // 会员营销通道 特定参数。创蓝规定：api提交营销短信的时候，需要自己加短信的签名及退订信息
         'sign' => '【通讯云】',

@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Gateways;
+namespace shuxian\EasySms\Gateways;
 
-use XiaoYun\EasySms\Contracts\GatewayInterface;
-use XiaoYun\EasySms\Support\Config;
+use shuxian\EasySms\Contracts\GatewayInterface;
+use shuxian\EasySms\Support\Config;
 
 /**
  * Class Gateway.
@@ -22,7 +22,7 @@ abstract class Gateway implements GatewayInterface
     const DEFAULT_TIMEOUT = 5.0;
 
     /**
-     * @var \XiaoYun\EasySms\Support\Config
+     * @var \shuxian\EasySms\Support\Config
      */
     protected $config;
 
@@ -66,7 +66,7 @@ abstract class Gateway implements GatewayInterface
     }
 
     /**
-     * @return \XiaoYun\EasySms\Support\Config
+     * @return \shuxian\EasySms\Support\Config
      */
     public function getConfig()
     {
@@ -74,7 +74,7 @@ abstract class Gateway implements GatewayInterface
     }
 
     /**
-     * @param \XiaoYun\EasySms\Support\Config $config
+     * @param \shuxian\EasySms\Support\Config $config
      *
      * @return $this
      */

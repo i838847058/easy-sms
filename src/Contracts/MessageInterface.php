@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the xiaoyun/easy-sms.
+ * This file is part of the shuxian/easy-sms.
  *
- * (c) xiaoyun <i@xiaoyun.me>
+ * (c) shuxian <i@shuxian.me>
  *
  * This source file is subject to the MIT license that is bundled
  * with this source code in the file LICENSE.
  */
 
-namespace XiaoYun\EasySms\Contracts;
+namespace shuxian\EasySms\Contracts;
 
 /**
  * Interface MessageInterface.
@@ -30,7 +30,7 @@ interface MessageInterface
     /**
      * Return message content.
      *
-     * @param \XiaoYun\EasySms\Contracts\GatewayInterface|null $gateway
+     * @param \shuxian\EasySms\Contracts\GatewayInterface|null $gateway
      *
      * @return string
      */
@@ -39,7 +39,7 @@ interface MessageInterface
     /**
      * Return the template id of message.
      *
-     * @param \XiaoYun\EasySms\Contracts\GatewayInterface|null $gateway
+     * @param \shuxian\EasySms\Contracts\GatewayInterface|null $gateway
      *
      * @return string
      */
@@ -48,7 +48,7 @@ interface MessageInterface
     /**
      * Return the template data of message.
      *
-     * @param \XiaoYun\EasySms\Contracts\GatewayInterface|null $gateway
+     * @param \shuxian\EasySms\Contracts\GatewayInterface|null $gateway
      *
      * @return array
      */

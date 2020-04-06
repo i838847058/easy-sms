@@ -9,11 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms;
+namespace Shuxian\EasySms;
 
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Exceptions\NoGatewayAvailableException;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Exceptions\NoGatewayAvailableException;
 
 /**
  * Class Messenger.
@@ -25,14 +25,14 @@ class Messenger
     const STATUS_FAILURE = 'failure';
 
     /**
-     * @var \shuxian\EasySms\EasySms
+     * @var \Shuxian\EasySms\EasySms
      */
     protected $easySms;
 
     /**
      * Messenger constructor.
      *
-     * @param \shuxian\EasySms\EasySms $easySms
+     * @param \Shuxian\EasySms\EasySms $easySms
      */
     public function __construct(EasySms $easySms)
     {
@@ -42,13 +42,13 @@ class Messenger
     /**
      * Send a message.
      *
-     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
+     * @param \Shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \Shuxian\EasySms\Contracts\MessageInterface     $message
      * @param array                                            $gateways
      *
      * @return array
      *
-     * @throws \shuxian\EasySms\Exceptions\NoGatewayAvailableException
+     * @throws \Shuxian\EasySms\Exceptions\NoGatewayAvailableException
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, array $gateways = [])
     {

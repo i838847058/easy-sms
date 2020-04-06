@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Strategies;
+namespace Shuxian\EasySms\Strategies;
 
-use shuxian\EasySms\Contracts\StrategyInterface;
+use Shuxian\EasySms\Contracts\StrategyInterface;
 
 /**
  * Class OrderStrategy.

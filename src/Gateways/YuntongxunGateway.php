@@ -9,13 +9,13 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Gateways;
+namespace Shuxian\EasySms\Gateways;
 
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Exceptions\GatewayErrorException;
-use shuxian\EasySms\Support\Config;
-use shuxian\EasySms\Traits\HasHttpRequest;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Exceptions\GatewayErrorException;
+use Shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Traits\HasHttpRequest;
 
 /**
  * Class YuntongxunGateway.
@@ -41,13 +41,13 @@ class YuntongxunGateway extends Gateway
     const SUCCESS_CODE = '000000';
 
     /**
-     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
-     * @param \shuxian\EasySms\Support\Config                 $config
+     * @param \Shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \Shuxian\EasySms\Contracts\MessageInterface     $message
+     * @param \Shuxian\EasySms\Support\Config                 $config
      *
      * @return array
      *
-     * @throws \shuxian\EasySms\Exceptions\GatewayErrorException ;
+     * @throws \Shuxian\EasySms\Exceptions\GatewayErrorException ;
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
@@ -82,7 +82,7 @@ class YuntongxunGateway extends Gateway
      * @param string                           $type
      * @param string                           $resource
      * @param string                           $datetime
-     * @param \shuxian\EasySms\Support\Config $config
+     * @param \Shuxian\EasySms\Support\Config $config
      *
      * @return string
      */

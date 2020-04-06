@@ -9,15 +9,15 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Gateways;
+namespace Shuxian\EasySms\Gateways;
 
 use GuzzleHttp\Exception\RequestException;
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Exceptions\GatewayErrorException;
-use shuxian\EasySms\Exceptions\InvalidArgumentException;
-use shuxian\EasySms\Support\Config;
-use shuxian\EasySms\Traits\HasHttpRequest;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Exceptions\GatewayErrorException;
+use Shuxian\EasySms\Exceptions\InvalidArgumentException;
+use Shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Traits\HasHttpRequest;
 
 class HuaweiGateway extends Gateway
 {
@@ -137,7 +137,12 @@ class HuaweiGateway extends Gateway
         $nonce = uniqid();
         $passwordDigest = base64_encode(hash('sha256', ($nonce.$now.$appSecret)));
 
-        return sprintf('UsernameToken Username="%s",PasswordDigest="%s",Nonce="%s",Created="%s"',
-            $appKey, $passwordDigest, $nonce, $now);
+        return sprintf(
+            'UsernameToken Username="%s",PasswordDigest="%s",Nonce="%s",Created="%s"',
+            $appKey,
+            $passwordDigest,
+            $nonce,
+            $now
+        );
     }
 }

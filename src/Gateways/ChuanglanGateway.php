@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Gateways;
+namespace Shuxian\EasySms\Gateways;
 
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Exceptions\GatewayErrorException;
-use shuxian\EasySms\Exceptions\InvalidArgumentException;
-use shuxian\EasySms\Support\Config;
-use shuxian\EasySms\Traits\HasHttpRequest;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Exceptions\GatewayErrorException;
+use Shuxian\EasySms\Exceptions\InvalidArgumentException;
+use Shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Traits\HasHttpRequest;
 
 /**
  * Class ChuanglanGateway.
@@ -59,16 +59,19 @@ class ChuanglanGateway extends Gateway
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
+        $IDDCode = !empty($to->getIDDCode()) ? $to->getIDDCode() : 86;
+
         $params = [
             'account' => $config->get('account'),
             'password' => $config->get('password'),
             'phone' => $to->getNumber(),
-            'msg' => $this->wrapChannelContent($message->getContent($this), $config),
+            'msg' => $this->wrapChannelContent($message->getContent($this), $config, $IDDCode),
         ];
-        $IDDCode = !empty($to->getIDDCode()) ? $to->getIDDCode() : 86;
 
         if (86 != $IDDCode) {
             $params['mobile'] = $to->getIDDCode().$to->getNumber();
+            $params['account'] = $config->get('intel_account') ?: $config->get('account');
+            $params['password'] = $config->get('intel_password') ?: $config->get('password');
         }
 
         $result = $this->postJson($this->buildEndpoint($config, $IDDCode), $params);
@@ -82,29 +85,34 @@ class ChuanglanGateway extends Gateway
 
     /**
      * @param Config $config
-     * @param int    $idDCode
+     * @param int    $IDDCode
      *
      * @return string
      *
      * @throws InvalidArgumentException
      */
-    protected function buildEndpoint(Config $config, $idDCode = 86)
+    protected function buildEndpoint(Config $config, $IDDCode = 86)
     {
-        $channel = $this->getChannel($config);
+        $channel = $this->getChannel($config, $IDDCode);
+
+        if (self::INT_URL === $channel) {
+            return $channel;
+        }
 
         return sprintf(self::ENDPOINT_URL_TEMPLATE, $channel);
     }
 
     /**
      * @param Config $config
+     * @param int    $IDDCode
      *
      * @return mixed
      *
      * @throws InvalidArgumentException
      */
-    protected function getChannel(Config $config)
+    protected function getChannel(Config $config, $IDDCode)
     {
-        if (86 != $idDCode) {
+        if (86 != $IDDCode) {
             return self::INT_URL;
         }
         $channel = $config->get('channel', self::CHANNEL_VALIDATE_CODE);
@@ -119,14 +127,15 @@ class ChuanglanGateway extends Gateway
     /**
      * @param string $content
      * @param Config $config
+     * @param int    $IDDCode
      *
      * @return string|string
      *
      * @throws InvalidArgumentException
      */
-    protected function wrapChannelContent($content, Config $config)
+    protected function wrapChannelContent($content, Config $config, $IDDCode)
     {
-        $channel = $this->getChannel($config);
+        $channel = $this->getChannel($config, $IDDCode);
 
         if (self::CHANNEL_PROMOTION_CODE == $channel) {
             $sign = (string) $config->get('sign', '');

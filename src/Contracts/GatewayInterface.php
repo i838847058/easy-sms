@@ -9,9 +9,9 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Contracts;
+namespace Shuxian\EasySms\Contracts;
 
-use shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Support\Config;
 
 /**
  * Class GatewayInterface.
@@ -28,9 +28,9 @@ interface GatewayInterface
     /**
      * Send a short message.
      *
-     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
-     * @param \shuxian\EasySms\Support\Config                 $config
+     * @param \Shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \Shuxian\EasySms\Contracts\MessageInterface     $message
+     * @param \Shuxian\EasySms\Support\Config                 $config
      *
      * @return array
      */

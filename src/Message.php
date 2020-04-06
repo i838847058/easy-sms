@@ -9,10 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms;
+namespace Shuxian\EasySms;
 
-use shuxian\EasySms\Contracts\GatewayInterface;
-use shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\GatewayInterface;
+use Shuxian\EasySms\Contracts\MessageInterface;
 
 /**
  * Class Message.
@@ -74,7 +74,7 @@ class Message implements MessageInterface
     /**
      * Return message content.
      *
-     * @param \shuxian\EasySms\Contracts\GatewayInterface|null $gateway
+     * @param \Shuxian\EasySms\Contracts\GatewayInterface|null $gateway
      *
      * @return string
      */
@@ -86,7 +86,7 @@ class Message implements MessageInterface
     /**
      * Return the template id of message.
      *
-     * @param \shuxian\EasySms\Contracts\GatewayInterface|null $gateway
+     * @param \Shuxian\EasySms\Contracts\GatewayInterface|null $gateway
      *
      * @return string
      */
@@ -132,7 +132,7 @@ class Message implements MessageInterface
     }
 
     /**
-     * @param \shuxian\EasySms\Contracts\GatewayInterface|null $gateway
+     * @param \Shuxian\EasySms\Contracts\GatewayInterface|null $gateway
      *
      * @return array
      */
@@ -142,11 +142,11 @@ class Message implements MessageInterface
     }
 
     /**
-     * @param array $data
+     * @param array|callable $data
      *
      * @return $this
      */
-    public function setData(array $data)
+    public function setData($data)
     {
         $this->data = $data;
 

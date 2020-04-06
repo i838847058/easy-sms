@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Support;
+namespace Shuxian\EasySms\Support;
 
 use ArrayAccess;
 

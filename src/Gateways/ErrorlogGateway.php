@@ -9,11 +9,11 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Gateways;
+namespace Shuxian\EasySms\Gateways;
 
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Support\Config;
 
 /**
  * Class ErrorlogGateway.
@@ -21,9 +21,9 @@ use shuxian\EasySms\Support\Config;
 class ErrorlogGateway extends Gateway
 {
     /**
-     * @param \shuxian\EasySms\Contracts\PhoneNumberInterface $to
-     * @param \shuxian\EasySms\Contracts\MessageInterface     $message
-     * @param \shuxian\EasySms\Support\Config                 $config
+     * @param \Shuxian\EasySms\Contracts\PhoneNumberInterface $to
+     * @param \Shuxian\EasySms\Contracts\MessageInterface     $message
+     * @param \Shuxian\EasySms\Support\Config                 $config
      *
      * @return array
      */

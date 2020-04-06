@@ -9,16 +9,17 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms;
+namespace Shuxian\EasySms;
 
 use Closure;
-use shuxian\EasySms\Contracts\GatewayInterface;
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Contracts\StrategyInterface;
-use shuxian\EasySms\Exceptions\InvalidArgumentException;
-use shuxian\EasySms\Strategies\OrderStrategy;
-use shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Contracts\GatewayInterface;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Contracts\StrategyInterface;
+use Shuxian\EasySms\Exceptions\InvalidArgumentException;
+use Shuxian\EasySms\Gateways\Gateway;
+use Shuxian\EasySms\Strategies\OrderStrategy;
+use Shuxian\EasySms\Support\Config;
 use RuntimeException;
 
 /**
@@ -27,7 +28,7 @@ use RuntimeException;
 class EasySms
 {
     /**
-     * @var \shuxian\EasySms\Support\Config
+     * @var \Shuxian\EasySms\Support\Config
      */
     protected $config;
 
@@ -47,7 +48,7 @@ class EasySms
     protected $gateways = [];
 
     /**
-     * @var \shuxian\EasySms\Messenger
+     * @var \Shuxian\EasySms\Messenger
      */
     protected $messenger;
 
@@ -74,13 +75,13 @@ class EasySms
      * Send a message.
      *
      * @param string|array                                       $to
-     * @param \shuxian\EasySms\Contracts\MessageInterface|array $message
+     * @param \Shuxian\EasySms\Contracts\MessageInterface|array $message
      * @param array                                              $gateways
      *
      * @return array
      *
-     * @throws \shuxian\EasySms\Exceptions\InvalidArgumentException
-     * @throws \shuxian\EasySms\Exceptions\NoGatewayAvailableException
+     * @throws \Shuxian\EasySms\Exceptions\InvalidArgumentException
+     * @throws \Shuxian\EasySms\Exceptions\NoGatewayAvailableException
      */
     public function send($to, $message, array $gateways = [])
     {
@@ -100,9 +101,9 @@ class EasySms
      *
      * @param string|null $name
      *
-     * @return \shuxian\EasySms\Contracts\GatewayInterface
+     * @return \Shuxian\EasySms\Contracts\GatewayInterface
      *
-     * @throws \shuxian\EasySms\Exceptions\InvalidArgumentException
+     * @throws \Shuxian\EasySms\Exceptions\InvalidArgumentException
      */
     public function gateway($name = null)
     {
@@ -120,9 +121,9 @@ class EasySms
      *
      * @param string|null $strategy
      *
-     * @return \shuxian\EasySms\Contracts\StrategyInterface
+     * @return \Shuxian\EasySms\Contracts\StrategyInterface
      *
-     * @throws \shuxian\EasySms\Exceptions\InvalidArgumentException
+     * @throws \Shuxian\EasySms\Exceptions\InvalidArgumentException
      */
     public function strategy($strategy = null)
     {
@@ -161,7 +162,7 @@ class EasySms
     }
 
     /**
-     * @return \shuxian\EasySms\Support\Config
+     * @return \Shuxian\EasySms\Support\Config
      */
     public function getConfig()
     {
@@ -199,7 +200,7 @@ class EasySms
     }
 
     /**
-     * @return \shuxian\EasySms\Messenger
+     * @return \Shuxian\EasySms\Messenger
      */
     public function getMessenger()
     {
@@ -215,7 +216,7 @@ class EasySms
      *
      * @return GatewayInterface
      *
-     * @throws \shuxian\EasySms\Exceptions\InvalidArgumentException
+     * @throws \Shuxian\EasySms\Exceptions\InvalidArgumentException
      */
     protected function createGateway($name)
     {
@@ -223,7 +224,13 @@ class EasySms
             $gateway = $this->callCustomCreator($name);
         } else {
             $className = $this->formatGatewayClassName($name);
-            $gateway = $this->makeGateway($className, $this->config->get("gateways.{$name}", []));
+            $config = $this->config->get("gateways.{$name}", []);
+
+            if (!isset($config['timeout'])) {
+                $config['timeout'] = $this->config->get('timeout', Gateway::DEFAULT_TIMEOUT);
+            }
+
+            $gateway = $this->makeGateway($className, $config);
         }
 
         if (!($gateway instanceof GatewayInterface)) {
@@ -239,9 +246,9 @@ class EasySms
      * @param string $gateway
      * @param array  $config
      *
-     * @return \shuxian\EasySms\Contracts\GatewayInterface
+     * @return \Shuxian\EasySms\Contracts\GatewayInterface
      *
-     * @throws \shuxian\EasySms\Exceptions\InvalidArgumentException
+     * @throws \Shuxian\EasySms\Exceptions\InvalidArgumentException
      */
     protected function makeGateway($gateway, $config)
     {
@@ -283,9 +290,9 @@ class EasySms
     }
 
     /**
-     * @param string|\shuxian\EasySms\Contracts\PhoneNumberInterface $number
+     * @param string|\Shuxian\EasySms\Contracts\PhoneNumberInterface $number
      *
-     * @return \shuxian\EasySms\PhoneNumber
+     * @return \Shuxian\EasySms\PhoneNumber
      */
     protected function formatPhoneNumber($number)
     {
@@ -297,9 +304,9 @@ class EasySms
     }
 
     /**
-     * @param array|string|\shuxian\EasySms\Contracts\MessageInterface $message
+     * @param array|string|\Shuxian\EasySms\Contracts\MessageInterface $message
      *
-     * @return \shuxian\EasySms\Contracts\MessageInterface
+     * @return \Shuxian\EasySms\Contracts\MessageInterface
      */
     protected function formatMessage($message)
     {
@@ -322,7 +329,7 @@ class EasySms
      *
      * @return array
      *
-     * @throws \shuxian\EasySms\Exceptions\InvalidArgumentException
+     * @throws \Shuxian\EasySms\Exceptions\InvalidArgumentException
      */
     protected function formatGateways(array $gateways)
     {

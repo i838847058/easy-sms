@@ -9,7 +9,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Contracts;
+namespace Shuxian\EasySms\Contracts;
 
 /**
  * Interface PhoneNumberInterface.

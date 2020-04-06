@@ -9,13 +9,13 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Gateways;
+namespace Shuxian\EasySms\Gateways;
 
-use shuxian\EasySms\Contracts\MessageInterface;
-use shuxian\EasySms\Contracts\PhoneNumberInterface;
-use shuxian\EasySms\Exceptions\GatewayErrorException;
-use shuxian\EasySms\Support\Config;
-use shuxian\EasySms\Traits\HasHttpRequest;
+use Shuxian\EasySms\Contracts\MessageInterface;
+use Shuxian\EasySms\Contracts\PhoneNumberInterface;
+use Shuxian\EasySms\Exceptions\GatewayErrorException;
+use Shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Traits\HasHttpRequest;
 
 /**
  * Class AliyunrestGateway.

@@ -9,10 +9,10 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms\Gateways;
+namespace Shuxian\EasySms\Gateways;
 
-use shuxian\EasySms\Contracts\GatewayInterface;
-use shuxian\EasySms\Support\Config;
+use Shuxian\EasySms\Contracts\GatewayInterface;
+use Shuxian\EasySms\Support\Config;
 
 /**
  * Class Gateway.
@@ -22,7 +22,7 @@ abstract class Gateway implements GatewayInterface
     const DEFAULT_TIMEOUT = 5.0;
 
     /**
-     * @var \shuxian\EasySms\Support\Config
+     * @var \Shuxian\EasySms\Support\Config
      */
     protected $config;
 
@@ -66,7 +66,7 @@ abstract class Gateway implements GatewayInterface
     }
 
     /**
-     * @return \shuxian\EasySms\Support\Config
+     * @return \Shuxian\EasySms\Support\Config
      */
     public function getConfig()
     {
@@ -74,7 +74,7 @@ abstract class Gateway implements GatewayInterface
     }
 
     /**
-     * @param \shuxian\EasySms\Support\Config $config
+     * @param \Shuxian\EasySms\Support\Config $config
      *
      * @return $this
      */

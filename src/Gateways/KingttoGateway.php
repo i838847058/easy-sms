@@ -18,41 +18,42 @@ use Shuxian\EasySms\Support\Config;
 use Shuxian\EasySms\Traits\HasHttpRequest;
 
 /**
- * Class AvatardataGateway.
+ * Class KingttoGateWay.
  *
- * @see http://www.avatardata.cn/Docs/Api/fd475e40-7809-4be7-936c-5926dd41b0fe
+ * @see http://www.kingtto.cn/
  */
-class AvatardataGateway extends Gateway
+class KingttoGateway extends Gateway
 {
     use HasHttpRequest;
 
-    const ENDPOINT_URL = 'http://v1.avatardata.cn/Sms/Send';
+    const ENDPOINT_URL = 'http://101.201.41.194:9999/sms.aspx';
 
-    const ENDPOINT_FORMAT = 'json';
+    const ENDPOINT_METHOD = 'send';
 
     /**
      * @param PhoneNumberInterface $to
      * @param MessageInterface     $message
      * @param Config               $config
      *
-     * @return array
+     * @return \Psr\Http\Message\ResponseInterface|array|string
      *
-     * @throws GatewayErrorException;
+     * @throws GatewayErrorException
      */
     public function send(PhoneNumberInterface $to, MessageInterface $message, Config $config)
     {
         $params = [
+            'action' => self::ENDPOINT_METHOD,
+            'userid' => $config->get('userid'),
+            'account' => $config->get('account'),
+            'password' => $config->get('password'),
             'mobile' => $to->getNumber(),
-            'templateId' => $message->getTemplate($this),
-            'param' => implode(',', $message->getData($this)),
-            'dtype' => self::ENDPOINT_FORMAT,
-            'key' => $config->get('app_key'),
+            'content' => $message->getContent(),
         ];
 
-        $result = $this->get(self::ENDPOINT_URL, $params);
+        $result = $this->post(self::ENDPOINT_URL, $params);
 
-        if ($result['error_code']) {
-            throw new GatewayErrorException($result['reason'], $result['error_code'], $result);
+        if ('Success' != $result['returnstatus']) {
+            throw new GatewayErrorException($result['message'], $result['remainpoint'], $result);
         }
 
         return $result;

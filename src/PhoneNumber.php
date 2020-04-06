@@ -9,14 +9,14 @@
  * with this source code in the file LICENSE.
  */
 
-namespace shuxian\EasySms;
+namespace Shuxian\EasySms;
 
 /**
  * Class PhoneNumberInterface.
  *
  * @author shuxian <i@shuxian.me>
  */
-class PhoneNumber implements \shuxian\EasySms\Contracts\PhoneNumberInterface
+class PhoneNumber implements \Shuxian\EasySms\Contracts\PhoneNumberInterface
 {
     /**
      * @var int

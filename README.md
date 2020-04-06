@@ -1,7 +1,16 @@
-<h1 align="center">shuxian/easy-sms</h1>
+<h1 align="center">Easy SMS</h1>
 
 <p align="center">:calling: 一款满足你的多种发送需求的短信发送组件</p>
 
+<p align="center">
+<a href="https://travis-ci.org/overtrue/easy-sms"><img src="https://travis-ci.org/overtrue/easy-sms.svg?branch=master" alt="Build Status"></a>
+<a href="https://packagist.org/packages/overtrue/easy-sms"><img src="https://poser.pugx.org/overtrue/easy-sms/v/stable.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/overtrue/easy-sms"><img src="https://poser.pugx.org/overtrue/easy-sms/v/unstable.svg" alt="Latest Unstable Version"></a>
+<a href="https://scrutinizer-ci.com/g/overtrue/easy-sms/?branch=master"><img src="https://scrutinizer-ci.com/g/overtrue/easy-sms/badges/quality-score.png?b=master" alt="Scrutinizer Code Quality"></a>
+<a href="https://scrutinizer-ci.com/g/overtrue/easy-sms/?branch=master"><img src="https://scrutinizer-ci.com/g/overtrue/easy-sms/badges/coverage.png?b=master" alt="Code Coverage"></a>
+<a href="https://packagist.org/packages/overtrue/easy-sms"><img src="https://poser.pugx.org/overtrue/easy-sms/downloads" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/overtrue/easy-sms"><img src="https://poser.pugx.org/overtrue/easy-sms/license" alt="License"></a>
+</p>
 
 
 ## 特点
@@ -32,6 +41,12 @@
 - [腾讯云 SMS](https://cloud.tencent.com/product/sms)
 - [阿凡达数据](http://www.avatardata.cn/)
 - [华为云](https://www.huaweicloud.com/product/msgsms.html)
+- [网易云信](https://yunxin.163.com/sms)
+- [云之讯](https://www.ucpaas.com/index.html)
+- [凯信通](http://www.kingtto.cn/)
+- [七牛云](https://www.qiniu.com/)
+- [UE35.net](http://uesms.ue35.cn/)
+- [Ucloud](https://www.ucloud.cn)
 
 ## 环境需求
 
@@ -43,10 +58,16 @@
 $ composer require "shuxian/easy-sms"
 ```
 
+**For Laravel notification**
+
+如果你喜欢使用 [Laravel Notification](https://laravel.com/docs/5.8/notifications), 可以考虑直接使用朋友封装的拓展包：
+
+https://github.com/yl/easysms-notification-channel
+
 ## 使用
 
 ```php
-use shuxian\EasySms\EasySms;
+use Shuxian\EasySms\EasySms;
 
 $config = [
     // HTTP 请求的超时时间（秒）
@@ -55,7 +76,7 @@ $config = [
     // 默认发送配置
     'default' => [
         // 网关调用策略，默认：顺序调用
-        'strategy' => \shuxian\EasySms\Strategies\OrderStrategy::class,
+        'strategy' => \Shuxian\EasySms\Strategies\OrderStrategy::class,
 
         // 默认可用的发送网关
         'gateways' => [
@@ -179,13 +200,13 @@ $easySms->send(13188888888, [
     'juhe' => [
         'gateway' => 'juhe',
         'status' => 'failure',
-        'exception' => \shuxian\EasySms\Exceptions\GatewayErrorException 对象
+        'exception' => \Shuxian\EasySms\Exceptions\GatewayErrorException 对象
     ],
     //...
 ]
 ```
 
-如果所选网关列表均发送失败时，将会抛出 `shuxian\EasySms\Exceptions\NoGatewayAvailableException` 异常，你可以使用 `$e->results` 获取发送结果。
+如果所选网关列表均发送失败时，将会抛出 `Shuxian\EasySms\Exceptions\NoGatewayAvailableException` 异常，你可以使用 `$e->results` 获取发送结果。
 
 你也可以使用 `$e` 提供的更多便捷方法：
 
@@ -193,7 +214,7 @@ $easySms->send(13188888888, [
 $e->getResults();               // 返回所有 API 的结果，结构同上
 $e->getExceptions();            // 返回所有调用异常列表
 $e->getException($gateway);     // 返回指定网关名称的异常对象
-$e->getLastException();         // 获取最后一个失败的异常对象 
+$e->getLastException();         // 获取最后一个失败的异常对象
 ```
 
 ## 自定义网关
@@ -235,7 +256,7 @@ $easySms->send(13188888888, [
 国际短信与国内短信的区别是号码前面需要加国际码，但是由于各平台对国际号码的写法不一致，所以在发送国际短信的时候有一点区别：
 
 ```php
-use shuxian\EasySms\PhoneNumber;
+use Shuxian\EasySms\PhoneNumber;
 
 // 发送到国际码为 31 的国际号码
 $number = new PhoneNumber(13188888888, 31);
@@ -251,14 +272,14 @@ $easySms->send($number, [
 
 ## 定义短信
 
-你可以根据发送场景的不同，定义不同的短信类，从而实现一处定义多处调用，你可以继承 `shuxian\EasySms\Message` 来定义短信模型：
+你可以根据发送场景的不同，定义不同的短信类，从而实现一处定义多处调用，你可以继承 `Shuxian\EasySms\Message` 来定义短信模型：
 
 ```php
 <?php
 
-use shuxian\EasySms\Message;
-use shuxian\EasySms\Contracts\GatewayInterface;
-use shuxian\EasySms\Strategies\OrderStrategy;
+use Shuxian\EasySms\Message;
+use Shuxian\EasySms\Contracts\GatewayInterface;
+use Shuxian\EasySms\Strategies\OrderStrategy;
 
 class OrderPaidMessage extends Message
 {
@@ -274,7 +295,7 @@ class OrderPaidMessage extends Message
     // 定义直接使用内容发送平台的内容
     public function getContent(GatewayInterface $gateway = null)
     {
-        return sprintf('您的订单:%s, 已经完成付款', $this->order->no);    
+        return sprintf('您的订单:%s, 已经完成付款', $this->order->no);
     }
 
     // 定义使用模板发送方式平台所需要的模板 ID
@@ -287,13 +308,13 @@ class OrderPaidMessage extends Message
     public function getData(GatewayInterface $gateway = null)
     {
         return [
-            'order_no' => $this->order->no    
-        ];    
+            'order_no' => $this->order->no
+        ];
     }
 }
 ```
 
-> 更多自定义方式请参考：[`shuxian\EasySms\Message`](shuxian\EasySms\Message;)
+> 更多自定义方式请参考：[`Shuxian\EasySms\Message`](Shuxian\EasySms\Message;)
 
 发送自定义短信：
 
@@ -445,13 +466,17 @@ $easySms->send(13188888888, $message);
         'account' => '',
         'password' => '',
 
-        // \shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE  => 验证码通道（默认）
-        // \shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_PROMOTION_CODE => 会员营销通道
-        'channel'  => \shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE, 
+        // 国际短信时必填
+        'intel_account' => '',
+        'intel_password' => '',
+
+        // \Shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE  => 验证码通道（默认）
+        // \Shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_PROMOTION_CODE => 会员营销通道
+        'channel'  => \Shuxian\EasySms\Gateways\ChuanglanGateway::CHANNEL_VALIDATE_CODE,
 
         // 会员营销通道 特定参数。创蓝规定：api提交营销短信的时候，需要自己加短信的签名及退订信息
         'sign' => '【通讯云】',
-        'unsubscribe' => '回TD退订', 
+        'unsubscribe' => '回TD退订',
     ],
 ```
 
@@ -480,7 +505,7 @@ $easySms->send(13188888888, $message);
 
 ### [twilio](https://www.twilio.com)
 
-短信使用 `content`  
+短信使用 `content`
 发送对象需要 使用`+`添加区号
 
 ```php
@@ -493,7 +518,7 @@ $easySms->send(13188888888, $message);
 
 ### [腾讯云 SMS](https://cloud.tencent.com/product/sms)
 
-短信内容使用 `content`。
+短信内容使用 `content`
 
 ```php
     'qcloud' => [
@@ -554,6 +579,118 @@ $easySms->send(13188888888, [
     ],
 ]);
 ```
+
+### [网易云信](https://yunxin.163.com/sms)
+
+短信内容使用 `template` + `data`
+
+```php
+    'yunxin' => [
+        'app_key' => '',
+        'app_secret' => '',
+        'code_length' => 4, // 随机验证码长度，范围 4～10，默认为 4
+        'need_up' => false, // 是否需要支持短信上行
+    ],
+```
+
+```php
+$easySms->send(18888888888, [
+    'template' => 'SMS_001',    // 不填则使用默认模板
+    'data' => [
+        'code' => 8946, // 如果设置了该参数，则 code_length 参数无效
+        'action' => 'sendCode', // 默认为 `sendCode`，校验短信验证码使用 `verifyCode`
+    ],
+]);
+```
+
+### [云之讯](https://www.ucpaas.com/index.html)
+
+短信内容使用 `template` + `data`
+
+```php
+    'yunzhixun' => [
+        'sid' => '',
+        'token' => '',
+        'app_id' => '',
+    ],
+```
+
+```php
+$easySms->send(18888888888, [
+    'template' => 'SMS_001',
+    'data' => [
+        'params' => '8946,3',   // 模板参数，多个参数使用 `,` 分割，模板无参数时可为空
+        'uid' => 'hexianghui',  // 用户 ID，随状态报告返回，可为空
+        'mobiles' => '18888888888,188888888889',    // 批量发送短信，手机号使用 `,` 分割，不使用批量发送请不要设置该参数
+    ],
+]);
+```
+
+### [凯信通](http://www.kingtto.cn/)
+
+短信内容使用 `content`
+
+```php
+    'kingtto'  => [
+        'userid'   => '',
+        'account'  => '',
+        'password' => '',
+    ],
+```
+
+```php
+$easySms->send(18888888888, [
+    'content'  => '您的验证码为: 6379',
+]);
+```
+
+### [七牛云](https://www.qiniu.com/)
+
+短信内容使用 `template` + `data`
+
+```php
+    'qiniu' => [
+        'secret_key' => '',
+        'access_key' => '',
+    ],
+```
+
+```php
+$easySms->send(18888888888, [
+    'template' => '1231234123412341234',
+    'data' => [
+        'code' => 1234,
+    ],
+]);
+```
+### [Ucloud](https://www.ucloud.cn/)
+短信使用 `template` + `data`
+
+```php
+  'ucloud' => [
+        'private_key'  => '',    //私钥
+        'public_key'   => '',    //公钥
+        ’sig_content‘  => '',    // 短信签名,
+        'project_id'   => '',    //项目ID,子账号才需要该参数
+    ],
+```
+
+```php
+$easySms->send(18888888888, [
+    'template' => 'UTAXXXXX',       //短信模板
+    'data' => [
+        'code' => 1234,     //模板参数，模板没有参数不用则填写，有多个参数请用数组，[1111,1111]
+        'mobiles' =>'',     //同时发送多个手机短信，请用数组[xxx,xxx]
+    ],
+]);
+
+```
+
+## PHP 扩展包开发
+
+> 想知道如何从零开始构建 PHP 扩展包？
+>
+> 请关注我的实战课程，我会在此课程中分享一些扩展开发经验 —— [《PHP 扩展包实战教程 - 从入门到发布》](https://learnku.com/courses/creating-package)
 
 ## License
 
